@@ -3,8 +3,11 @@
 ## Description
 
 You are going to make it big by playing the stock market – “buy low, sell high” you scream as you sit down at your computer. You’ve heard good things about this company Computershare - so you start investigating its historic share prices. You’re going to need to time your trades so that you make the biggest gain possible! But there’s a catch, as you’re new to the game, your broker will only allow you one trade.
+
 So, you look back at a list of market-opening prices for Computershare stock. You are not into this risky day-trading approach, so are looking at the opening price each day of the last month.
+
 You decide to put a program together (using industry best-practice standards of course!) using your favorite language, to help you work out what the single best trade you could have made that month would be, to maximize gain.
+
 Remember - buy low, sell high. And before you ask… unfortunately your DeLorean won’t start, so you can't sell before you buy.
 
 ## Input Description

@@ -1,0 +1,15 @@
+/Users/samuelshum/Documents/Code/Computershare/console/bin/Debug/net5.0/console.deps.json
+/Users/samuelshum/Documents/Code/Computershare/console/bin/Debug/net5.0/console.runtimeconfig.json
+/Users/samuelshum/Documents/Code/Computershare/console/bin/Debug/net5.0/console.runtimeconfig.dev.json
+/Users/samuelshum/Documents/Code/Computershare/console/bin/Debug/net5.0/console.dll
+/Users/samuelshum/Documents/Code/Computershare/console/bin/Debug/net5.0/ref/console.dll
+/Users/samuelshum/Documents/Code/Computershare/console/bin/Debug/net5.0/console.pdb
+/Users/samuelshum/Documents/Code/Computershare/console/obj/Debug/net5.0/console.csprojAssemblyReference.cache
+/Users/samuelshum/Documents/Code/Computershare/console/obj/Debug/net5.0/console.GeneratedMSBuildEditorConfig.editorconfig
+/Users/samuelshum/Documents/Code/Computershare/console/obj/Debug/net5.0/console.AssemblyInfoInputs.cache
+/Users/samuelshum/Documents/Code/Computershare/console/obj/Debug/net5.0/console.AssemblyInfo.cs
+/Users/samuelshum/Documents/Code/Computershare/console/obj/Debug/net5.0/console.csproj.CoreCompileInputs.cache
+/Users/samuelshum/Documents/Code/Computershare/console/obj/Debug/net5.0/console.dll
+/Users/samuelshum/Documents/Code/Computershare/console/obj/Debug/net5.0/ref/console.dll
+/Users/samuelshum/Documents/Code/Computershare/console/obj/Debug/net5.0/console.pdb
+/Users/samuelshum/Documents/Code/Computershare/console/obj/Debug/net5.0/console.genruntimeconfig.cache

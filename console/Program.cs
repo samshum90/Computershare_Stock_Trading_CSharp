@@ -6,34 +6,46 @@ namespace console
     {
         static void Main(string[] args)
         {
-        // open the text file to get the numbers
-            string text = System.IO.File.ReadAllText("./Data/ChallengeSampleDataSet1.txt");
-            
-        // convert to an array
-            var array = text.Split(',');
-
-            float? sellPrice = null;
-            int sellIndex = -1;
-
-            float? buyPrice = null;
-            int buyIndex = -1;
-
-            for (int i = 0; i < array.Length; i++)
-        {
-                Console.WriteLine(float.Parse(array[i]));
-                if (!sellPrice.HasValue || float.Parse(array[i]) > sellPrice.Value)
+            Prices prices = new Prices();
+            System.Console.WriteLine("----------------------------------");
+            System.Console.WriteLine("Computershare Stock Prices");
+            System.Console.WriteLine("----------------------------------");
+            System.Console.WriteLine("");
+            while (true)
             {
-                sellPrice = float.Parse(array[i]);
-                sellIndex = i + 1;
-            }
+                System.Console.WriteLine("Please select a Month you would like the open prices of");
+                string LastMonth = DateTime.Now.AddMonths(-1).ToString("MMMM");
+                Console.WriteLine("1. " + LastMonth);
+                string SecondMonth = DateTime.Now.AddMonths(-2).ToString("MMMM");
+                Console.WriteLine("2. " + SecondMonth);
+                Console.WriteLine("quit to exit");
 
-            if (!buyPrice.HasValue || float.Parse(array[i]) < buyPrice.Value)
-            {
-                buyPrice = float.Parse(array[i]);
-                buyIndex = i + 1;
+                string input = Console.ReadLine();
+
+                if (input.ToLower() == "quit")
+                {
+                    Console.WriteLine("Program exited!");
+                    break;
+                }
+
+                // open the text file to get the numbers
+                string text = null;
+                if (input == "1")
+                {
+                    text = System.IO.File.ReadAllText("./Data/ChallengeSampleDataSet1.txt");
+
+                }
+                if (input == "2")
+                {
+                    text = System.IO.File.ReadAllText("./Data/ChallengeSampleDataSet2.txt");
+
+                }
+                // convert to an array
+                var array = text.Split(',');
+                System.Console.WriteLine("Buy day, Sell day");
+                System.Console.WriteLine(prices.sellPrice(array) + ", " + prices.buyPrice(array));
+                continue;
             }
-        }
-            Console.WriteLine( buyIndex + "(" + buyPrice + "), " + sellIndex +"(" + sellPrice + ")");
         }
     }
 }

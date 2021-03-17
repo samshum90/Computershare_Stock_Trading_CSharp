@@ -13,8 +13,8 @@ namespace console.tests
         {
             // Arrange
             _priceService = new PriceService();
-            _arrayOfStockPrices = new string[] {"18.93","20.25","17.05","16.59","21.09","16.22","21.43","27.13","18.62","21.31","23.96","25.52","19.64","23.49","15.28","22.77","23.1","26.58","27.03","23.75","27.39","15.93","17.83","18.82" };
-        }
+         _arrayOfStockPrices = new string[] {"15.28","27.39","17.05","16.59","21.09","16.22","21.43","27.13","18.62","21.31","23.96","25.52","19.64","23.49","15.28","22.77","23.1","26.58","27.03","23.75","27.39","15.93","17.83","18.82" };
+      }
 
         [Fact]
         public void buyPriceNullArgumentReturnNullException()
@@ -77,8 +77,9 @@ namespace console.tests
 
             // Act 
             var buyDayResult = _priceService.buyDay(_arrayOfStockPrices);
+
             // Assert
-            Assert.Equal(15, buyDayResult);
+            Assert.Equal(new List<int> { 1, 15 }, buyDayResult);
 
         }
 
@@ -145,7 +146,7 @@ namespace console.tests
             // Act 
             var sellDayResult = _priceService.sellDay(_arrayOfStockPrices);
             // Assert
-            Assert.Equal(21, sellDayResult);
+            Assert.Equal(new List<int> { 2, 21}, sellDayResult);
 
         }
     }

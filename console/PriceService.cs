@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using console.Interfaces;
 
 namespace console
@@ -7,12 +8,10 @@ namespace console
     {
         
         private double? _price;
-        private int _day;
 
         public PriceService()
         {
             _price = null;
-            _day = -1;
         }
 
         public double buyPrice(string[] stockArray)
@@ -34,25 +33,28 @@ namespace console
             }
             return _price.Value;
         }
-        public int buyDay(string[] stockArray)
+        public List<int> buyDay(string[] stockArray)
         {
             if (stockArray == null || stockArray.Length == 0 )
                 throw new ArgumentNullException("Stock cannot be empty");
 
-            // Using Linq
-            // var doubleArray = Array.ConvertAll(stockArray, double.Parse);
-            // _price = doubleArray.Min();
-            // _day = Array.IndexOf(doubleArray, _price) + 1;
+            var days = new List<int>();
 
-            // Using a loop
             for (int i = 0; i < stockArray.Length; i++)
             {
                 if (!_price.HasValue || double.Parse(stockArray[i]) < _price.Value)
                 {
-                    _day = i + 1;
+                    _price = double.Parse(stockArray[i]);
                 }
             }
-            return _day;
+            for (int i = 0; i < stockArray.Length; i++)
+            {
+                if (double.Parse(stockArray[i]) == _price)
+                {
+                    days.Add( i + 1);
+                }
+            }
+            return days;
         }
         public double sellPrice(string[] stockArray)
         {
@@ -74,10 +76,11 @@ namespace console
             return  _price.Value;
         }
 
-        public int sellDay(string[] stockArray)
+        public List<int> sellDay(string[] stockArray)
         {
             if (stockArray == null || stockArray.Length == 0 )
                 throw new ArgumentNullException("Stock cannot be empty");
+            var days = new List<int>();
 
             for (int i = 0; i < stockArray.Length; i++)
             {
@@ -90,10 +93,16 @@ namespace console
                 if (!_price.HasValue || double.Parse(stockArray[i]) > _price.Value)
                 {
                     _price = double.Parse(stockArray[i]);
-                    _day = i + 1;
                 }
             }
-            return _day;
+            for (int i = 0; i < stockArray.Length; i++)
+            {
+                if (double.Parse(stockArray[i]) == _price)
+                {
+                    days.Add( i + 1);
+                }
+            }
+            return days;
         }
     }
 }

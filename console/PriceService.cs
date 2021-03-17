@@ -1,10 +1,12 @@
 using System;
 using System.Linq;
+using console.Interfaces;
 
 namespace console
 {
-    public class Prices
+    public class PriceService : IPriceService
     {
+        
         private double? price = null;
         private int day = -1;
 

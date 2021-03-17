@@ -1,5 +1,14 @@
 # Stock Market
 
+## Run console app on VS Code
+
+`cd console`
+`dotnet run`
+
+## Run console app on Visual Studio
+
+Open in Visual Studio press F5 to build and run.
+
 ## Description
 
 You are going to make it big by playing the stock market – “buy low, sell high” you scream as you sit down at your computer. You’ve heard good things about this company Computershare - so you start investigating its historic share prices. You’re going to need to time your trades so that you make the biggest gain possible! But there’s a catch, as you’re new to the game, your broker will only allow you one trade.

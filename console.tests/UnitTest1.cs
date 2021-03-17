@@ -6,13 +6,13 @@ namespace console.tests
 {
     public class UnitTest1
     {
-        private readonly Prices _prices;
+        private readonly PriceService _priceService;
         private readonly string[] _arrayOfStockPrices;
 
         public UnitTest1()
         {
             // Arrange
-            _prices = new Prices();
+            _priceService = new PriceService();
             _arrayOfStockPrices = new string[] {"18.93","20.25","17.05","16.59","21.09","16.22","21.43","27.13","18.62","21.31","23.96","25.52","19.64","23.49","15.28","22.77","23.1","26.58","27.03","23.75","27.39","15.93","17.83","18.82" };
         }
 
@@ -22,7 +22,7 @@ namespace console.tests
             //Arrange
             var message = "Value cannot be null. (Parameter 'Stock cannot be empty')";
             // Act & Assert
-            var exception = Assert.Throws<ArgumentNullException>(() => _prices.buyPrice(null));
+            var exception = Assert.Throws<ArgumentNullException>(() => _priceService.buyPrice(null));
             Assert.Equal(message, exception.Message);
         }
 
@@ -34,7 +34,7 @@ namespace console.tests
             string[] emptyArray = new String[0];
 
             // Act & Assert
-            var exception = Assert.Throws<ArgumentNullException>(() => _prices.buyPrice(emptyArray));
+            var exception = Assert.Throws<ArgumentNullException>(() => _priceService.buyPrice(emptyArray));
             Assert.Equal(message, exception.Message);
         }
 
@@ -43,7 +43,7 @@ namespace console.tests
         {
 
             // Act 
-            var buyPriceResult = _prices.buyPrice(_arrayOfStockPrices);
+            var buyPriceResult = _priceService.buyPrice(_arrayOfStockPrices);
             // Assert
             Assert.Equal(15.28, buyPriceResult);
 
@@ -55,7 +55,7 @@ namespace console.tests
             //Arrange
             var message = "Value cannot be null. (Parameter 'Stock cannot be empty')";
             // Act & Assert
-            var exception = Assert.Throws<ArgumentNullException>(() => _prices.buyDay(null));
+            var exception = Assert.Throws<ArgumentNullException>(() => _priceService.buyDay(null));
             Assert.Equal(message, exception.Message);
         }
 
@@ -67,7 +67,7 @@ namespace console.tests
             string[] emptyArray = new String[0];
 
             // Act & Assert
-            var exception = Assert.Throws<ArgumentNullException>(() => _prices.buyDay(emptyArray));
+            var exception = Assert.Throws<ArgumentNullException>(() => _priceService.buyDay(emptyArray));
             Assert.Equal(message, exception.Message);
         }
 
@@ -76,7 +76,7 @@ namespace console.tests
         {
 
             // Act 
-            var buyDayResult = _prices.buyDay(_arrayOfStockPrices);
+            var buyDayResult = _priceService.buyDay(_arrayOfStockPrices);
             // Assert
             Assert.Equal(15, buyDayResult);
 
@@ -89,7 +89,7 @@ namespace console.tests
             //Arrange
             var message = "Value cannot be null. (Parameter 'Stock cannot be empty')";
             // Act & Assert
-            var exception = Assert.Throws<ArgumentNullException>(() => _prices.sellPrice(null));
+            var exception = Assert.Throws<ArgumentNullException>(() => _priceService.sellPrice(null));
             Assert.Equal(message, exception.Message);
         }
 
@@ -101,7 +101,7 @@ namespace console.tests
             string[] emptyArray = new String[0];
 
             // Act & Assert
-            var exception = Assert.Throws<ArgumentNullException>(() => _prices.sellPrice(emptyArray));
+            var exception = Assert.Throws<ArgumentNullException>(() => _priceService.sellPrice(emptyArray));
             Assert.Equal(message, exception.Message);
         }
 
@@ -110,7 +110,7 @@ namespace console.tests
         {
 
             // Act 
-            var sellPriceResult = _prices.sellPrice(_arrayOfStockPrices);
+            var sellPriceResult = _priceService.sellPrice(_arrayOfStockPrices);
             // Assert
             Assert.Equal(27.39, sellPriceResult);
 
@@ -122,7 +122,7 @@ namespace console.tests
             //Arrange
             var message = "Value cannot be null. (Parameter 'Stock cannot be empty')";
             // Act & Assert
-            var exception = Assert.Throws<ArgumentNullException>(() => _prices.sellDay(null));
+            var exception = Assert.Throws<ArgumentNullException>(() => _priceService.sellDay(null));
             Assert.Equal(message, exception.Message);
         }
 
@@ -134,7 +134,7 @@ namespace console.tests
             string[] emptyArray = new String[0];
 
             // Act & Assert
-            var exception = Assert.Throws<ArgumentNullException>(() => _prices.sellDay(emptyArray));
+            var exception = Assert.Throws<ArgumentNullException>(() => _priceService.sellDay(emptyArray));
             Assert.Equal(message, exception.Message);
         }
 
@@ -143,7 +143,7 @@ namespace console.tests
         {
 
             // Act 
-            var sellDayResult = _prices.sellDay(_arrayOfStockPrices);
+            var sellDayResult = _priceService.sellDay(_arrayOfStockPrices);
             // Assert
             Assert.Equal(21, sellDayResult);
 

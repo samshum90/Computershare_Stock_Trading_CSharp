@@ -6,7 +6,8 @@ namespace console
     {
         static void Main(string[] args)
         {
-            Prices prices = new Prices();
+            PriceService priceService = new PriceService();
+
             System.Console.WriteLine("----------------------------------");
             System.Console.WriteLine("Computershare Stock Prices");
             System.Console.WriteLine("----------------------------------");
@@ -43,7 +44,7 @@ namespace console
                 // convert to an array
                 var array = text.Split(',');
                 System.Console.WriteLine("Buy day, Sell day");
-                System.Console.WriteLine( prices.sellDay(array) + "(" + prices.sellPrice(array) + "), " + prices.buyDay(array) + "(" + prices.buyPrice(array) + ")");
+                System.Console.WriteLine( priceService.buyDay(array) + "(" + priceService.buyPrice(array) + "), " + priceService.sellDay(array) + "(" + priceService.sellPrice(array) + ")");
                 continue;
             }
         }

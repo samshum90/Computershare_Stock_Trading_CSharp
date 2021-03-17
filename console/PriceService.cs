@@ -21,17 +21,17 @@ namespace console
                 throw new ArgumentNullException("Stock cannot be empty");
 
             // Using Linq
-            // var doubleArray = Array.ConvertAll(stockArray, double.Parse);
-            // _price = doubleArray.Min();
+            var doubleArray = Array.ConvertAll(stockArray, double.Parse);
+            _price = doubleArray.Min();
 
             // Using a loop
-            for (int i = 0; i < stockArray.Length; i++)
-            {
-                if (!_price.HasValue || double.Parse(stockArray[i]) < _price.Value)
-                {
-                    _price = double.Parse(stockArray[i]);
-                }
-            }
+            // for (int i = 0; i < stockArray.Length; i++)
+            // {
+            //     if (!_price.HasValue || double.Parse(stockArray[i]) < _price.Value)
+            //     {
+            //         _price = double.Parse(stockArray[i]);
+            //     }
+            // }
             return _price.Value;
         }
         public List<int> buyDay(string[] stockArray)
@@ -55,17 +55,17 @@ namespace console
                 throw new ArgumentNullException("Stock cannot be empty");
 
                  // Using Linq
-                // var doubleArray = Array.ConvertAll(stockArray, double.Parse);
-                // _price = doubleArray.Max();
+                var doubleArray = Array.ConvertAll(stockArray, double.Parse);
+                _price = doubleArray.Max();
 
                 // Using a loop
-            for (int i = 0; i < stockArray.Length; i++)
-            {
-                if (!_price.HasValue || double.Parse(stockArray[i]) > _price.Value)
-                {
-                    _price = double.Parse(stockArray[i]);
-                }
-            }
+            // for (int i = 0; i < stockArray.Length; i++)
+            // {
+            //     if (!_price.HasValue || double.Parse(stockArray[i]) > _price.Value)
+            //     {
+            //         _price = double.Parse(stockArray[i]);
+            //     }
+            // }
             return  _price.Value;
         }
 

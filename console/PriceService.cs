@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using console.Interfaces;
 
 namespace console
@@ -7,8 +6,14 @@ namespace console
     public class PriceService : IPriceService
     {
         
-        private double? price = null;
-        private int day = -1;
+        private double? _price;
+        private int _day;
+
+        public PriceService()
+        {
+            _price = null;
+            _day = -1;
+        }
 
         public double buyPrice(string[] stockArray)
         {
@@ -17,17 +22,17 @@ namespace console
 
             // Using Linq
             // var doubleArray = Array.ConvertAll(stockArray, double.Parse);
-            // price = doubleArray.Min();
+            // _price = doubleArray.Min();
 
             // Using a loop
             for (int i = 0; i < stockArray.Length; i++)
             {
-                if (!price.HasValue || double.Parse(stockArray[i]) < price.Value)
+                if (!_price.HasValue || double.Parse(stockArray[i]) < _price.Value)
                 {
-                    price = double.Parse(stockArray[i]);
+                    _price = double.Parse(stockArray[i]);
                 }
             }
-            return price.Value;
+            return _price.Value;
         }
         public int buyDay(string[] stockArray)
         {
@@ -35,19 +40,19 @@ namespace console
                 throw new ArgumentNullException("Stock cannot be empty");
 
             // Using Linq
-            var doubleArray = Array.ConvertAll(stockArray, double.Parse);
-            price = doubleArray.Min();
-            day = Array.IndexOf(doubleArray, price) + 1;
+            // var doubleArray = Array.ConvertAll(stockArray, double.Parse);
+            // _price = doubleArray.Min();
+            // _day = Array.IndexOf(doubleArray, _price) + 1;
 
             // Using a loop
-            // for (int i = 0; i < stockArray.Length; i++)
-            // {
-            //     if (!price.HasValue || double.Parse(stockArray[i]) < price.Value)
-            //     {
-            //         index = i + 1;
-            //     }
-            // }
-            return day;
+            for (int i = 0; i < stockArray.Length; i++)
+            {
+                if (!_price.HasValue || double.Parse(stockArray[i]) < _price.Value)
+                {
+                    _day = i + 1;
+                }
+            }
+            return _day;
         }
         public double sellPrice(string[] stockArray)
         {
@@ -56,17 +61,17 @@ namespace console
 
                  // Using Linq
                 // var doubleArray = Array.ConvertAll(stockArray, double.Parse);
-                // price = doubleArray.Max();
+                // _price = doubleArray.Max();
 
                 // Using a loop
             for (int i = 0; i < stockArray.Length; i++)
             {
-                if (!price.HasValue || double.Parse(stockArray[i]) > price.Value)
+                if (!_price.HasValue || double.Parse(stockArray[i]) > _price.Value)
                 {
-                    price = double.Parse(stockArray[i]);
+                    _price = double.Parse(stockArray[i]);
                 }
             }
-            return  price.Value;
+            return  _price.Value;
         }
 
         public int sellDay(string[] stockArray)
@@ -77,18 +82,18 @@ namespace console
             for (int i = 0; i < stockArray.Length; i++)
             {
                  // Using Linq
-                var doubleArray = Array.ConvertAll(stockArray, double.Parse);
-                price = doubleArray.Max();
-                day = Array.IndexOf(doubleArray, price) + 1;
+                // var doubleArray = Array.ConvertAll(stockArray, double.Parse);
+                // _price = doubleArray.Max();
+                // _day = Array.IndexOf(doubleArray, _price) + 1;
 
                 // Using a loop
-                // if (!price.HasValue || double.Parse(stockArray[i]) > price.Value)
-                // {
-                //     price = double.Parse(stockArray[i]);
-                //     index = i + 1;
-                // }
+                if (!_price.HasValue || double.Parse(stockArray[i]) > _price.Value)
+                {
+                    _price = double.Parse(stockArray[i]);
+                    _day = i + 1;
+                }
             }
-            return day;
+            return _day;
         }
     }
 }

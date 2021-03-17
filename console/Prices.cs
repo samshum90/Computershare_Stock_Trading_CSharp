@@ -5,44 +5,88 @@ namespace console
 {
     public class Prices
     {
-        private float? price = null;
+        private double? price = null;
         private int day = -1;
 
-        public string buyPrice(string[] stockArray)
+        public double buyPrice(string[] stockArray)
         {
+            if (stockArray == null || stockArray.Length == 0 )
+                throw new ArgumentNullException("Stock cannot be empty");
+
             // Using Linq
-            var floatArray = Array.ConvertAll(stockArray, float.Parse);
-            price = floatArray.Max();
-            day = Array.IndexOf(floatArray, price) + 1;
+            // var doubleArray = Array.ConvertAll(stockArray, double.Parse);
+            // price = doubleArray.Min();
+
+            // Using a loop
+            for (int i = 0; i < stockArray.Length; i++)
+            {
+                if (!price.HasValue || double.Parse(stockArray[i]) < price.Value)
+                {
+                    price = double.Parse(stockArray[i]);
+                }
+            }
+            return price.Value;
+        }
+        public int buyDay(string[] stockArray)
+        {
+            if (stockArray == null || stockArray.Length == 0 )
+                throw new ArgumentNullException("Stock cannot be empty");
+
+            // Using Linq
+            var doubleArray = Array.ConvertAll(stockArray, double.Parse);
+            price = doubleArray.Min();
+            day = Array.IndexOf(doubleArray, price) + 1;
 
             // Using a loop
             // for (int i = 0; i < stockArray.Length; i++)
             // {
-            //     if (!price.HasValue || float.Parse(stockArray[i]) > price.Value)
+            //     if (!price.HasValue || double.Parse(stockArray[i]) < price.Value)
             //     {
-            //         price = float.Parse(stockArray[i]);
             //         index = i + 1;
             //     }
             // }
-            return day.ToString() + "(" + price.ToString() + ")";
+            return day;
         }
-        public string sellPrice(string[] stockArray)
+        public double sellPrice(string[] stockArray)
         {
+            if (stockArray == null || stockArray.Length == 0 )
+                throw new ArgumentNullException("Stock cannot be empty");
+
+                 // Using Linq
+                // var doubleArray = Array.ConvertAll(stockArray, double.Parse);
+                // price = doubleArray.Max();
+
+                // Using a loop
+            for (int i = 0; i < stockArray.Length; i++)
+            {
+                if (!price.HasValue || double.Parse(stockArray[i]) > price.Value)
+                {
+                    price = double.Parse(stockArray[i]);
+                }
+            }
+            return  price.Value;
+        }
+
+        public int sellDay(string[] stockArray)
+        {
+            if (stockArray == null || stockArray.Length == 0 )
+                throw new ArgumentNullException("Stock cannot be empty");
+
             for (int i = 0; i < stockArray.Length; i++)
             {
                  // Using Linq
-                var floatArray = Array.ConvertAll(stockArray, float.Parse);
-                price = floatArray.Min();
-                day = Array.IndexOf(floatArray, price) + 1;
+                var doubleArray = Array.ConvertAll(stockArray, double.Parse);
+                price = doubleArray.Max();
+                day = Array.IndexOf(doubleArray, price) + 1;
 
                 // Using a loop
-                // if (!price.HasValue || float.Parse(stockArray[i]) < price.Value)
+                // if (!price.HasValue || double.Parse(stockArray[i]) > price.Value)
                 // {
-                //     price = float.Parse(stockArray[i]);
+                //     price = double.Parse(stockArray[i]);
                 //     index = i + 1;
                 // }
             }
-            return day.ToString() + "(" + price.ToString() + ")";
+            return day;
         }
     }
 }

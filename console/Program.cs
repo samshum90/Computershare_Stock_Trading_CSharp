@@ -43,7 +43,7 @@ namespace console
                 // convert to an array
                 var array = text.Split(',');
                 System.Console.WriteLine("Buy day, Sell day");
-                System.Console.WriteLine(prices.sellPrice(array) + ", " + prices.buyPrice(array));
+                System.Console.WriteLine( prices.sellDay(array) + "(" + prices.sellPrice(array) + "), " + prices.buyDay(array) + "(" + prices.buyPrice(array) + ")");
                 continue;
             }
         }

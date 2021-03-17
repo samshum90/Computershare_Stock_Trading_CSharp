@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using console.Interfaces;
 
@@ -7,8 +8,12 @@ namespace console
     public class PriceService : IPriceService
     {
         
-        private double? price = null;
-        private int day = -1;
+        private double? _price;
+
+        public PriceService()
+        {
+            _price = null;
+        }
 
         public double buyPrice(string[] stockArray)
         {
@@ -17,38 +22,33 @@ namespace console
 
             // Using Linq
             // var doubleArray = Array.ConvertAll(stockArray, double.Parse);
-            // price = doubleArray.Min();
+            // _price = doubleArray.Min();
 
             // Using a loop
             for (int i = 0; i < stockArray.Length; i++)
             {
-                if (!price.HasValue || double.Parse(stockArray[i]) < price.Value)
+                if (!_price.HasValue || double.Parse(stockArray[i]) < _price.Value)
                 {
-                    price = double.Parse(stockArray[i]);
+                    _price = double.Parse(stockArray[i]);
                 }
             }
-            return price.Value;
+            return _price.Value;
         }
-        public int buyDay(string[] stockArray)
+        public List<int> buyDay(string[] stockArray)
         {
             if (stockArray == null || stockArray.Length == 0 )
                 throw new ArgumentNullException("Stock cannot be empty");
 
-            // Using Linq
             var doubleArray = Array.ConvertAll(stockArray, double.Parse);
-            price = doubleArray.Min();
-            day = Array.IndexOf(doubleArray, price) + 1;
+            _price = doubleArray.Min();
 
-            // Using a loop
-            // for (int i = 0; i < stockArray.Length; i++)
-            // {
-            //     if (!price.HasValue || double.Parse(stockArray[i]) < price.Value)
-            //     {
-            //         index = i + 1;
-            //     }
-            // }
-            return day;
+            return doubleArray
+                     .Select((v,i)=>new {Index = i, Value = v})
+                     .Where(x=>x.Value == _price)
+                     .Select(x=>x.Index + 1)
+                     .ToList();
         }
+        
         public double sellPrice(string[] stockArray)
         {
             if (stockArray == null || stockArray.Length == 0 )
@@ -56,39 +56,32 @@ namespace console
 
                  // Using Linq
                 // var doubleArray = Array.ConvertAll(stockArray, double.Parse);
-                // price = doubleArray.Max();
+                // _price = doubleArray.Max();
 
                 // Using a loop
             for (int i = 0; i < stockArray.Length; i++)
             {
-                if (!price.HasValue || double.Parse(stockArray[i]) > price.Value)
+                if (!_price.HasValue || double.Parse(stockArray[i]) > _price.Value)
                 {
-                    price = double.Parse(stockArray[i]);
+                    _price = double.Parse(stockArray[i]);
                 }
             }
-            return  price.Value;
+            return  _price.Value;
         }
 
-        public int sellDay(string[] stockArray)
+        public List<int> sellDay(string[] stockArray)
         {
             if (stockArray == null || stockArray.Length == 0 )
                 throw new ArgumentNullException("Stock cannot be empty");
 
-            for (int i = 0; i < stockArray.Length; i++)
-            {
-                 // Using Linq
-                var doubleArray = Array.ConvertAll(stockArray, double.Parse);
-                price = doubleArray.Max();
-                day = Array.IndexOf(doubleArray, price) + 1;
+            var doubleArray = Array.ConvertAll(stockArray, double.Parse);
+            _price = doubleArray.Max();
 
-                // Using a loop
-                // if (!price.HasValue || double.Parse(stockArray[i]) > price.Value)
-                // {
-                //     price = double.Parse(stockArray[i]);
-                //     index = i + 1;
-                // }
-            }
-            return day;
+            return doubleArray
+                     .Select((v,i)=>new {Index = i, Value = v})
+                     .Where(x=>x.Value == _price)
+                     .Select(x=>x.Index + 1)
+                     .ToList();
         }
     }
 }

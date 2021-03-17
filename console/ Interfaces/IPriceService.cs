@@ -1,10 +1,12 @@
+using System.Collections.Generic;
+
 namespace console. Interfaces
 {
     public interface IPriceService
     {
         double buyPrice(string[] stockArray);
-        int buyDay(string[] stockArray);
+        List<int> buyDay(string[] stockArray);
         double sellPrice(string[] stockArray);
-        int sellDay(string[] stockArray);
+        List<int> sellDay(string[] stockArray);
     }
 }

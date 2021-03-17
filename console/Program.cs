@@ -14,7 +14,7 @@ namespace console
             System.Console.WriteLine("");
             while (true)
             {
-                System.Console.WriteLine("Please select a Month you would like the open prices of");
+                System.Console.WriteLine("Please select a Month you would like the opening stock prices of");
                 string LastMonth = DateTime.Now.AddMonths(-1).ToString("MMMM");
                 Console.WriteLine("1. " + LastMonth);
                 string SecondMonth = DateTime.Now.AddMonths(-2).ToString("MMMM");

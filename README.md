@@ -3,6 +3,7 @@
 ## Run console app on VS Code
 
 `cd console`
+
 `dotnet run`
 
 ## Run console app on Visual Studio

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace console
 {
@@ -12,13 +13,15 @@ namespace console
             System.Console.WriteLine("Computershare Stock Prices");
             System.Console.WriteLine("----------------------------------");
             System.Console.WriteLine("");
+
             while (true)
             {
-                System.Console.WriteLine("Please select a Month you would like the opening stock prices of");
-                string LastMonth = DateTime.Now.AddMonths(-1).ToString("MMMM");
-                Console.WriteLine("1. " + LastMonth);
-                string SecondMonth = DateTime.Now.AddMonths(-2).ToString("MMMM");
-                Console.WriteLine("2. " + SecondMonth);
+                System.Console.WriteLine("Please select a file you would like to open");
+                string[] files = Directory.GetFiles("./Data", "*.txt", SearchOption.AllDirectories);
+                 for (int i = 0; i < files.Length ; i++)
+                {
+                    System.Console.WriteLine($"{i + 1}. {files[i].Remove(0,7)}");
+                }
                 Console.WriteLine("quit to exit");
 
                 string input = Console.ReadLine();
@@ -31,16 +34,12 @@ namespace console
 
                 // open the text file to get the numbers
                 string text = null;
-                if (input == "1")
+                if (int.Parse(input) > 0 && int.Parse(input) < files.Length + 1)
                 {
-                    text = System.IO.File.ReadAllText("./Data/ChallengeSampleDataSet1.txt");
+                    text = System.IO.File.ReadAllText($"{files[int.Parse(input) - 1]}");
 
                 }
-                if (input == "2")
-                {
-                    text = System.IO.File.ReadAllText("./Data/ChallengeSampleDataSet2.txt");
 
-                }
                 // convert to an array
                 var array = text.Split(',');
                 System.Console.WriteLine("Buy day(Price), Sell day(Price)");

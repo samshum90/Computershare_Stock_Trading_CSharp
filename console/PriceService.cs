@@ -49,6 +49,7 @@ namespace console
             {
                 if (!_price.HasValue || double.Parse(stockArray[i]) < _price.Value)
                 {
+                    _price = double.Parse(stockArray[i]);
                     _day = i + 1;
                 }
             }
